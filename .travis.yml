@@ -4,5 +4,4 @@ node_js:
   - "node"
 install: 
   - npm install
-  - nvm install -node
 script: npm test
