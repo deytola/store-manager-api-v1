@@ -1,7 +1,6 @@
 import express from 'express';
 
 const router = express.Router();
-// const app = express();
 const products = [
   {
     id: 1,
@@ -25,7 +24,6 @@ const products = [
     minimumQuantityAllowed: 20,
   },
 ];
-
 
 // Route to get all the products
 router.get('/', (req, res) => {
@@ -51,7 +49,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Route to post a product
-router.post('/add', (req, res) => {
+router.post('/', (req, res) => {
   // Check if all fields are provided and are valid:
   if (!req.body.itemName
        || !req.body.category
@@ -73,12 +71,12 @@ router.post('/add', (req, res) => {
 });
 
 // Route to update a product
-router.put('/update/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   // Check if all fields are provided and are valid:
   if (!req.body.itemName
-    || !req.body.category
-    || req.body.price <= 0
-    || !req.params.id) {
+       || !req.body.category
+        || req.body.price <= 0
+       || !req.params.id.toString().match(/^[0-9]{3,}$/g)) {
     res.status(400);
     res.json({ message: 'Bad Request' });
   } else {
@@ -113,10 +111,10 @@ router.put('/update/:id', (req, res) => {
 });
 
 // Route to delete a product
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const removeIndex = products.map(
     product => product.id,
-  ).indexOf(parseInt(req.params.id, 10)); // Get the index of product with given id.
+  ).indexOf(req.params.id); // Get the index of product with given id.
   if (removeIndex === -1) {
     res.json({ message: 'Product not found' });
   } else {
