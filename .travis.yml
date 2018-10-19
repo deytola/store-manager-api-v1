@@ -1,6 +1,8 @@
 language: node_js
 sudo: false
 node_js: 
-  -"node"
-install: npm install
+  - "node"
+install: 
+  - npm install
+  - nvm install -node
 script: npm test
