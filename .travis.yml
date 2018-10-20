@@ -4,6 +4,5 @@ node_js:
 install: 
   - npm install
 script: 
-  - npm test
-  - cat ./coverage/lcov.info ./coverage/karma/**/*.info > lcov.info 
+  - npm test 
 after_success: npm run coverage
