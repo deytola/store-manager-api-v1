@@ -80,10 +80,10 @@ router.get('/:id', (req, res) => {
 });
 
 // Route to delete a sale record
-router.delete('/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   const removeIndex = sales.map(
     record => record.id,
-  ).indexOf(req.params.id); // Get the index of the sale record with given id.
+  ).indexOf(parseInt(req.params.id, 10)); // Get the index of the sale record with given id.
   if (removeIndex === -1) {
     res.json({ message: 'Record Not Found' });
   } else {
